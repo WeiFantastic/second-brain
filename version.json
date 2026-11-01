@@ -1,18 +1,14 @@
 {
-  "versionCode": 4002,
-  "versionName": "1.0.1",
-  "url": "https://weifantastic.github.io/second-brain/second-brain-v1.0.1-arm64.apk",
-  "url32": "https://weifantastic.github.io/second-brain/second-brain-v1.0.1-arm32.apk",
+  "versionCode": 2003,
+  "versionName": "1.0.2",
+  "url": "https://weifantastic.github.io/second-brain/second-brain-v1.0.2-arm64.apk",
+  "url32": "https://weifantastic.github.io/second-brain/second-brain-v1.0.2-arm32.apk",
   "size": 29763645,
   "publishedAt": "2026-11-01",
   "minAndroid": "8.0",
   "notes": [
-    "设置里新增「建议反馈」：遇到问题、想要什么功能，直接跟我说",
-    "QQ 号点一下就能复制，也可以用另一台设备扫码加我",
-    "设置页的版本号改成自动跟着版本走，以后不会再显示错",
-    "生日、纪念日选择器：年、月、日都能点开网格直接挑，不用一格格翻",
-    "备份导出到「下载/第二大脑」，换手机、重装都能导入回来",
-    "修好了指纹 / 面容解锁点了没反应的问题",
-    "划掉应用后每日提醒照样能收到"
+    "「检查更新」修好了：以前连的是公司内网地址，外面的人点它永远失败，现在改走公网",
+    "下载页也搬到公网了，发给朋友能正常打开",
+    "功能上和 1.0.1 完全一样，已经装过 1.0.1 的可以不用重装"
   ]
 }
