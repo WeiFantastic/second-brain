@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第二大脑 · 下载</title>
+<meta name="description" content="第二大脑：只存在你手机里的私人记忆库。离线、加密、不问权限，安卓直装包下载。">
+<meta property="og:title" content="第二大脑 · 下载">
+<meta property="og:description" content="只存在你手机里的私人记忆库。离线、SQLCipher 加密、不联网也能用。">
+<style>
+  :root{
+    --bg:#f4f5f9; --card:#ffffff; --fg:#1b1d21; --muted:#6b7280;
+    --line:#e7e8ee; --accent:#5b8def; --accent-2:#4a7ce0;
+    --ok:#16a34a; --shadow:0 8px 30px rgba(27,29,33,.07);
+    --chip:#eef2fd; --chip-fg:#3b62b8; --warn:#fdf3e7; --warn-fg:#8a5a1a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e1013; --card:#171a1f; --fg:#eceef2; --muted:#9aa1ad;
+      --line:#262a31; --accent:#6b98f2; --accent-2:#5b8def; --ok:#34d399;
+      --shadow:0 8px 30px rgba(0,0,0,.45); --chip:#1e2634; --chip-fg:#9db8f0;
+      --warn:#2a2118; --warn-fg:#e0b070;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--fg); min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column; align-items:center;
+    padding:48px 20px 64px;
+  }
+  .wrap{width:100%; max-width:720px}
+  .head{display:flex; align-items:center; gap:16px; margin-bottom:28px}
+  .logo{
+    width:64px; height:64px; border-radius:18px; flex:0 0 auto;
+    background:linear-gradient(145deg,#7aa6f7,#5b8def 55%,#3f6fd8);
+    display:grid; place-items:center; box-shadow:0 6px 18px rgba(91,141,239,.35);
+  }
+  h1{font-size:26px; margin:0 0 6px; letter-spacing:.3px}
+  .tagline{color:var(--muted); font-size:14px; margin:0}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:20px;
+    padding:24px; box-shadow:var(--shadow); margin-bottom:16px;
+  }
+  .row{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
+  .version{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .vnum{font-size:22px; font-weight:650; letter-spacing:.2px}
+  .chip{
+    font-size:12px; padding:4px 10px; border-radius:999px;
+    background:var(--chip); color:var(--chip-fg); font-weight:600;
+  }
+  .meta{color:var(--muted); font-size:13px; margin-top:8px}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:linear-gradient(180deg,var(--accent),var(--accent-2));
+    color:#fff; text-decoration:none; font-weight:600; font-size:16px;
+    padding:14px 26px; border-radius:14px; border:0; width:100%; margin-top:20px;
+    box-shadow:0 6px 16px rgba(91,141,239,.3); transition:transform .12s ease, filter .12s ease;
+    cursor:pointer; font-family:inherit;
+  }
+  .btn:active{transform:translateY(1px); filter:brightness(.96)}
+  .btn.ghost{
+    background:transparent; color:var(--accent);
+    border:1.5px solid var(--accent); box-shadow:none; font-size:15px;
+    padding:12px 20px; margin-top:14px;
+  }
+  .hint{color:var(--muted); font-size:12px; text-align:center; margin-top:10px; line-height:1.7}
+  .alt{color:var(--muted); font-size:12px; text-align:center; margin-top:6px}
+  .alt a{color:var(--accent); text-decoration:none}
+  .alt a:hover{text-decoration:underline}
+  h2{font-size:15px; margin:0 0 14px; font-weight:650; letter-spacing:.2px}
+  ul.notes{margin:0; padding-left:18px; color:var(--muted); font-size:14px; line-height:1.9}
+  ul.notes li::marker{color:var(--accent)}
+  .qr{display:flex; gap:20px; align-items:center}
+  .qr img{width:132px; height:132px; border-radius:12px; background:#fff; padding:6px}
+  .qr-txt{font-size:13px; color:var(--muted); line-height:1.8}
+  .steps{counter-reset:s; list-style:none; padding:0; margin:0}
+  .steps li{
+    counter-increment:s; position:relative; padding-left:36px;
+    font-size:14px; color:var(--muted); line-height:1.9; margin-bottom:10px;
+  }
+  .steps li::before{
+    content:counter(s); position:absolute; left:0; top:3px;
+    width:22px; height:22px; border-radius:50%; background:var(--chip); color:var(--chip-fg);
+    font-size:12px; font-weight:700; display:grid; place-items:center;
+  }
+  .tip{
+    background:var(--warn); color:var(--warn-fg); border-radius:14px;
+    padding:14px 16px; font-size:13.5px; line-height:1.85; margin-bottom:12px;
+  }
+  .tip b{font-weight:650}
+  .tip:last-of-type{margin-bottom:0}
+  .foot{color:var(--muted); font-size:12px; text-align:center; margin-top:26px; line-height:1.9}
+  .foot a{color:var(--muted)}
+  @media(max-width:520px){
+    body{padding:32px 16px 48px}
+    h1{font-size:22px}
+    .qr{flex-direction:column; text-align:center}
+    .btn{font-size:15px; padding:13px 20px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20v-7"/>
+        <path d="M12 13a4.2 4.2 0 0 0 0-8.4A3.6 3.6 0 0 0 5.2 6.4a3.6 3.6 0 0 0 .3 7.2A3.9 3.9 0 0 0 12 13Z"/>
+        <path d="M12 13a4.2 4.2 0 0 1 0-8.4 3.6 3.6 0 0 1 6.8 1.8 3.6 3.6 0 0 1-.3 7.2A3.9 3.9 0 0 1 12 13Z"/>
+        <path d="M9.4 17.6a2.6 2.6 0 0 0 5.2 0"/>
+      </svg>
+    </div>
+    <div>
+      <h1>第二大脑</h1>
+      <p class="tagline">只存在你手机里的私人记忆库 · 离线 · 加密</p>
+    </div>
+  </div>
+
+  <!-- 最新版本 -->
+  <div class="card">
+    <div class="row">
+      <div>
+        <div class="version">
+          <span class="vnum" id="vname">v1.0.1</span>
+          <span class="chip">最新</span>
+        </div>
+        <div class="meta" id="vmeta">28.4 MB · 2026-11-01 发布 · 需要 Android 8.0 以上</div>
+      </div>
+    </div>
+    <a class="btn" id="dl" href="second-brain-v1.0.1-arm64.apk" download>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/>
+      </svg>
+      下载安卓安装包
+    </a>
+    <div class="hint">点开后会直接下载 APK；手机提示「未知来源」时选择允许即可安装<br>升级安装不会丢数据（同包名同签名覆盖安装）</div>
+    <div class="alt">装不上或提示解析失败？可能是很老的 32 位机型，
+      <a id="dl32" href="second-brain-v1.0.1-arm32.apk" download>换 32 位版试试</a>
+    </div>
+  </div>
+
+  <!-- 更新日志 -->
+  <div class="card">
+    <h2>这个版本更新了什么</h2>
+    <ul class="notes" id="notes">
+      <li>设置里新增「建议反馈」：遇到问题、想要什么功能，直接跟我说</li>
+      <li>QQ 号点一下就能复制，也可以用另一台设备扫码加我</li>
+      <li>设置页的版本号改成自动跟着版本走，以后不会再显示错</li>
+      <li>生日、纪念日选择器：年、月、日都能点开网格直接挑，不用一格格翻</li>
+      <li>备份导出到「下载/第二大脑」，换手机、重装都能导入回来</li>
+      <li>修好了指纹 / 面容解锁点了没反应的问题</li>
+      <li>划掉应用后每日提醒照样能收到</li>
+    </ul>
+  </div>
+
+  <!-- 分享给朋友 -->
+  <div class="card">
+    <h2>分享给朋友 · 先看这三条</h2>
+    <div class="tip">
+      <b>微信里点开可能下不了。</b>微信会拦安装包下载。让朋友点右上角 <b>「···」</b> → <b>「在浏览器中打开」</b>，再点下载按钮就正常了。
+    </div>
+    <div class="tip">
+      <b>iPhone 装不了。</b>这个 App 目前只有安卓版，苹果手机暂时用不上，别让朋友白折腾。
+    </div>
+    <div class="tip">
+      <b>装的时候要允许「未知来源」。</b>系统会弹「禁止安装未知来源应用」，点「设置」允许一次即可，这是安卓对非应用商店安装包的常规拦截。
+    </div>
+    <button class="btn ghost" id="copyBtn">复制链接和一段话，直接发给朋友</button>
+    <div class="hint" id="copyState" style="min-height:18px"></div>
+  </div>
+
+  <!-- 二维码 -->
+  <div class="card">
+    <div class="qr">
+      <img src="qr.png" alt="扫码打开本页" width="132" height="132"
+           onerror="this.style.display='none'">
+      <div class="qr-txt">
+        电脑上打开这个页面时，用手机扫描左边的二维码，即可直接在手机上下载。<br>
+        <span style="color:var(--muted)">（二维码指向的就是本页，手机打开后点下载按钮）</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 安装说明 -->
+  <div class="card">
+    <h2>怎么装</h2>
+    <ol class="steps">
+      <li>点上面的「下载安卓安装包」，等下载完成。</li>
+      <li>在通知栏或「文件管理 → 下载」里点开这个 APK。</li>
+      <li>如果提示「禁止安装未知来源应用」，点「设置」允许本次安装，再返回继续。</li>
+      <li>安装完成打开 App，设置一个只有你知道的主密码（忘了就真的打不开，请记牢）。</li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    数据全部保存在本机，用 SQLCipher 加密，不收集通讯录、定位，也不上传任何记录。<br>
+    只有你自己在设置里打开「大模型」模式时，才会把命中的几条资料发给你填的接口。
+  </p>
+</div>
+
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 版本信息 ---------- */
+  fetch('version.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (v) {
+      if (!v) return;
+      if (v.versionName) $('vname').textContent = 'v' + v.versionName;
+      var size = v.size ? (v.size / 1048576).toFixed(1) + ' MB' : '';
+      var date = v.publishedAt ? v.publishedAt + ' 发布' : '';
+      $('vmeta').textContent = [size, date, '需要 Android 8.0 以上'].filter(Boolean).join(' · ');
+      if (v.url) $('dl').setAttribute('href', v.url);
+      if (v.url32) $('dl32').setAttribute('href', v.url32);
+      if (v.notes && v.notes.length) {
+        $('notes').innerHTML = v.notes.map(function (n) { return '<li>' + n + '</li>'; }).join('');
+      }
+    }).catch(function () {});
+
+  /* ---------- 一键复制分享文案 ---------- */
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function flash(msg) {
+    $('copyState').textContent = msg;
+    clearTimeout(window.__t);
+    window.__t = setTimeout(function () { $('copyState').textContent = ''; }, 4000);
+  }
+
+  $('copyBtn').addEventListener('click', function () {
+    var url = location.origin + location.pathname;
+    var text =
+      '我做了个私人的记忆 App，数据全存在手机本地、加密、不联网：\n' +
+      url + '\n' +
+      '安卓手机装上就能用（iPhone 暂时没有）。\n' +
+      '微信里如果下不了，点右上角「···」→「在浏览器中打开」再点下载。';
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        flash('已复制，粘到微信发给朋友就行');
+      }).catch(function () {
+        fallbackCopy(text) ? flash('已复制，粘到微信发给朋友就行') : flash('复制失败，请长按地址栏手动复制');
+      });
+    } else {
+      fallbackCopy(text) ? flash('已复制，粘到微信发给朋友就行') : flash('复制失败，请长按地址栏手动复制');
+    }
+  });
+</script>
+</body>
+</html>
